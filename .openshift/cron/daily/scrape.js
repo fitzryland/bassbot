@@ -174,12 +174,3 @@ var scrape = {
 }
 
 scrape.init();
-
-
-// var testDate = 'Sat May 23',
-//     unixDate = Date.parse(testDate),
-//     date = new Date(unixDate*1000);
-
-// console.log( 'date: ' + date.getDate() );
-// console.log( 'year: ' + date.getYear() );
-// console.log( 'month: ' + months[date.getMonth()] );
