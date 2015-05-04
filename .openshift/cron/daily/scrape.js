@@ -52,7 +52,7 @@ var scrape = {
       if (err) {
         return console.log(err);
       }
-      fs.rename('shows.json', 'public/shows.json', function(err) {
+      fs.rename('shows.json', './public/shows.json', function(err) {
         if (err) {
           return console.log(err);
         }
