@@ -119,6 +119,7 @@ var SampleApp = function() {
         for (var r in self.routes) {
             self.app.get(r, self.routes[r]);
         }
+
     };
 
 
@@ -126,6 +127,7 @@ var SampleApp = function() {
      *  Initializes the sample application.
      */
     self.initialize = function() {
+        app.use(express.static(__dirname + '/public'));
         self.setupVariables();
         self.populateCache();
         self.setupTerminationHandlers();
