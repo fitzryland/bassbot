@@ -161,6 +161,9 @@ var scrape = {
           scrape.source.redcubeSubRequest(showData);
 
         }
+        // TODO
+        // on the server it does this does not wait
+        // for the sub requests to finish...
         scrape.done();
       } );
     }
