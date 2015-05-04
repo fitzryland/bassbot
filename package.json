@@ -27,5 +27,8 @@
   "bundleDependencies": [],
 
   "private": true,
+  "scripts": {
+    "postdeploy": "node .openshift/cron/daily/scrape.js"
+  },
   "main": "server.js"
 }
