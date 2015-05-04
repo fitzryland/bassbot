@@ -1,7 +1,12 @@
 // load dependencies
 var request = require('request'),
     cheerio = require('cheerio'),
-    fileSystem = require('fs');
+    fs = require('fs');
+
+var curDate = new Date(),
+    curUnix = curDate.getTime();
+
+
 
 var shows = [];
 function Show(artist, date, venue, tickets, image, url) {
@@ -12,6 +17,15 @@ function Show(artist, date, venue, tickets, image, url) {
   this.image = image;
   this.url = url;
 }
+
+function ShowsData(timestamp, shows) {
+  this.timestamp = timestamp;
+  this.shows = shows;
+}
+var showsData = {};
+showsData.timestamp = curUnix;
+showsData.shows = [];
+
 // function Venue(name, address, url) {
 //   this.name = name;
 //   this.address = address;
@@ -32,9 +46,9 @@ var scrapeCount = 0;
 
 var scrape = {
   write: function() {
-    var prettyShows = JSON.stringify(shows, null, 4),
+    var prettyShows = JSON.stringify(showsData, null, 4),
         fileName = 'shows.json';
-    fileSystem.writeFile( fileName, prettyShows, function(err) {
+    fs.writeFile( fileName, prettyShows, function(err) {
       if (err) {
         return console.log(err);
       }
@@ -89,7 +103,7 @@ var scrape = {
             .find('.more-info')
             .attr('href');
 
-          shows.push(showData);
+          showsData.shows.push(showData);
         }
         scrape.done();
       } );
@@ -118,7 +132,7 @@ var scrape = {
           'Cuthbert Amphitheater'
         ];
         if ( excludedVenues.indexOf(showData.venue) == -1 ) {
-          shows.push(showData);
+          showsData.shows.push(showData);
         }
       } );
     },
