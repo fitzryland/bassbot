@@ -37,7 +37,7 @@ var initScrape = function(url, oncomplete) {
     if ( err ) {
       throw err;
     }
-    // console.log(url);
+    console.log(url);
     var html = cheerio.load(body);
     oncomplete(html);
   } );
@@ -53,12 +53,6 @@ var scrape = {
         return console.log(err);
       }
       console.log("BASSBOT COMPLETE");
-      // fs.rename('shows.json', './public/shows.json', function(err) {
-      //   if (err) {
-      //     return console.log(err);
-      //   }
-      //   console.log("BASSBOT COMPLETE");
-      // });
     });
   },
   done: function() {
