@@ -52,12 +52,13 @@ var scrape = {
       if (err) {
         return console.log(err);
       }
-      fs.rename('shows.json', './public/shows.json', function(err) {
-        if (err) {
-          return console.log(err);
-        }
-        console.log("BASSBOT COMPLETE");
-      });
+      console.log("BASSBOT COMPLETE");
+      // fs.rename('shows.json', './public/shows.json', function(err) {
+      //   if (err) {
+      //     return console.log(err);
+      //   }
+      //   console.log("BASSBOT COMPLETE");
+      // });
     });
   },
   done: function() {
