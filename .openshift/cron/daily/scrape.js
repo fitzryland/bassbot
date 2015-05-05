@@ -42,7 +42,8 @@ var initScrape = function(url, oncomplete) {
     oncomplete(html);
   } );
 }
-var scrapeCount = 0;
+var scrapeCount = 0,
+    redcubeScrapeCount = 0;
 
 var scrape = {
   write: function() {
@@ -59,6 +60,13 @@ var scrape = {
     scrapeCount++;
     if ( scrapeCount == 2 ) {
       scrape.write();
+    }
+  },
+  redcubeDone: function(showsLength) {
+    var showCount = showsLength - 1;
+    redcubeScrapeCount++;
+    if ( showCount == redcubeScrapeCount ) {
+      scrape.done();
     }
   },
   init: function() {
@@ -108,7 +116,7 @@ var scrape = {
         scrape.done();
       } );
     },
-    redcubeSubRequest: function(showData) {
+    redcubeSubRequest: function(showData, showsLength) {
       initScrape( showData.url, function($) {
 
         showData.date = $('.pix-post-options time')
@@ -134,6 +142,7 @@ var scrape = {
         if ( excludedVenues.indexOf(showData.venue) == -1 ) {
           showsData.shows.push(showData);
         }
+        scrape.redcubeDone(showsLength);
       } );
     },
     redcube: function() {
@@ -158,13 +167,13 @@ var scrape = {
             .find('.ext-link')
             .attr('href');
 
-          scrape.source.redcubeSubRequest(showData);
+          scrape.source.redcubeSubRequest(showData, showsLength);
 
         }
         // TODO
         // on the server it does this does not wait
         // for the sub requests to finish...
-        scrape.done();
+        // scrape.done();
       } );
     }
   }
