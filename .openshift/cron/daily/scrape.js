@@ -63,7 +63,7 @@ var scrape = {
     }
   },
   redcubeDone: function(showsLength) {
-    var showCount = showsLength - 1;
+    var showCount = showsLength;
     redcubeScrapeCount++;
     if ( showCount == redcubeScrapeCount ) {
       scrape.done();
