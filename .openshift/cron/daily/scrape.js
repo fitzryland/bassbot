@@ -41,14 +41,14 @@ var initScrape = function(url, oncomplete) {
     var html = cheerio.load(body);
     oncomplete(html);
   } );
-}
+};
 var scrapeCount = 0,
     redcubeScrapeCount = 0;
 
 var scrape = {
   write: function() {
     var prettyShows = JSON.stringify(showsData, null, 4),
-        fileName = 'public/shows.json';
+        fileName = '../../../public/public/shows.json';
     fs.writeFile( fileName, prettyShows, function(err) {
       if (err) {
         return console.log(err);
